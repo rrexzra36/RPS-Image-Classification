@@ -20,7 +20,7 @@ Dataset yang digunakan adalah "Rock, Paper, Scissors" yang berisi 2.188 gambar g
 - Gunting (*Scissors*): 750 gambar
 
 ### Persiapan Data (*Data Preaparation*)
-Tahap persiapan data dilakukan menggunakan tf.keras.utils.image_dataset_from_directory yang secara otomatis menangani pelabelan berdasarkan struktur direktori. Prosesnya meliputi:
+Tahap persiapan data dilakukan menggunakan `tf.keras.utils.image_dataset_from_directory` yang secara otomatis menangani pelabelan berdasarkan struktur direktori. Prosesnya meliputi:
 
 - Dataset dibagi menjadi 80% data pelatihan (1751 gambar) dan 20% data validasi (437 gambar).
 - Untuk mencegah overfitting dan meningkatkan kemampuan generalisasi model, data pelatihan diaugmentasi secara real-time dengan teknik seperti rotasi acak, zoom acak, pembalikan horizontal, dan penyesuaian kontras.
@@ -29,7 +29,7 @@ Tahap persiapan data dilakukan menggunakan tf.keras.utils.image_dataset_from_dir
 ### *Machine Learning Modeling*
 Model ini dibangun menggunakan pendekatan **Transfer Learning** untuk memanfaatkan fitur-fitur yang telah dipelajari oleh model yang lebih besar.
 
-- `MobileNetV2` yang telah dilatih pada dataset `ImageNet` digunakan sebagai model dasar. Lapisan klasifikasi teratasnya (`include_top=False`) tidak digunakan.
+- `MobileNetV2` yang telah dilatih pada dataset `ImageNet` digunakan sebagai model dasar. Lapisan klasifikasi teratasnya tidak digunakan (`include_top=False`).
 - Bobot dari base_model dibekukan (*frozen*) agar tidak berubah selama tahap pelatihan awal. Di atas model dasar, ditambahkan beberapa *custom layer*:
   - `GlobalAveragePooling2D`: Untuk meratakan output fitur.
   - `Dropout`: Untuk mengurangi overfitting.
